@@ -2,4 +2,4 @@
 
 This repo contains *Bao Xian*'s portfolio and SPS projects
 
-**njoy :)**
+**enjoy :)**
