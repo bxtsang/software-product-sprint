@@ -1,9 +1,71 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
-#greeting-container {
-  margin-top: 20px;
-}
+  #content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+    transition: opacity 1s ease-in;
+    transition-delay: 1s;
+  }
+  
+  #greeting-container {
+    margin-top: 20px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(241, 129, 0);
+  }
+  
+  body {
+    color: rgba(255, 232, 202, 0.733);
+    margin: 0;
+    background-color: rgb(31, 31, 31);
+    font-family: 'Raleway', sans-serif;
+  }
+
+  #intro-wrapper {
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+  }
+
+  #intro {
+    
+    font-size: 1.5rem;
+    border-radius: 20px;
+    padding: 35px;
+    position: relative;
+    top: 250px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    animation: border-flicker 3.5s linear infinite;
+  }
+
+  #name {
+    font-size: 2.5em;
+    font-weight: 550;
+    letter-spacing: 15px;
+    padding-top: 10px;
+    display: block;
+    color: rgb(241, 129, 0);
+  }
+
+  #intro-wrapper.hide, #content.hide{
+    opacity: 0;
+  }
+
+  @keyframes border-flicker {
+    0% {
+      border: 5px solid rgba(241, 129, 0, 0.75);
+      box-shadow: 0px 0px 80px 15px rgba(241, 129, 0, 0.25);
+    }
+    50% {
+      border: 5px solid rgba(241, 129, 0, 0.3);
+      box-shadow: 0px 0px 80px 15px rgb(241, 129, 0);
+    }
+    100% {
+      border: 5px solid rgba(241, 129, 0, 0.75);
+      box-shadow: 0px 0px 80px 15px rgba(241, 129, 0, 0.25);
+    }
+  }
