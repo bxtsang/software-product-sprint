@@ -34,7 +34,7 @@
     top: 250px;
     font-weight: 100;
     letter-spacing: 2px;
-    animation: border-flicker 3.5s linear infinite;
+    animation: border-flicker 2.5s linear infinite;
   }
 
   @keyframes border-flicker {
