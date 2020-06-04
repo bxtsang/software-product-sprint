@@ -12,10 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+window.onload = function() {
+  setTimeout(toggleContent, 3500);
+}
+
 /**
-  Hides the intro-wrapper and displays the main content
+ * Hides the intro-wrapper and displays the main content
  */
 function toggleContent() {
   document.querySelector('#intro-wrapper').classList.add('hide');
   document.querySelector('#content').classList.remove('hide');
+}
+
+/**
+ * Toggles the display of water polo images
+ */
+function toggleImages() {
+  var images = document.querySelectorAll('.wp-img');
+
+  if (images[0].classList.contains('hide')) {
+    images.forEach(image => {
+      image.classList.remove('hide');
+    });
+  } else {
+    images.forEach(image => {
+      image.classList.add('hide');
+    });
+  }
 }

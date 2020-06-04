@@ -6,6 +6,12 @@
     width: 700px;
     transition: opacity 1s ease-in;
     transition-delay: 1s;
+    position: relative;
+    bottom: 25px;
+  }
+
+  p {
+    letter-spacing: 1px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -74,6 +80,7 @@
     border-radius: 30px;
     background-color: rgb(59, 59, 59);
     display: inline-block;
+    margin-right: 5px;
   }
 
   .logo:hover {
@@ -86,6 +93,17 @@
 
   #github.logo {
     background-image: url("images/github.png");
+  }
+
+  #instagram.logo {
+    background-image: url("images/insta.png");
+    background-size: 65%;
+  }
+
+  #next.logo {
+    border: 0;
+    position: absolute;
+    right: 0;
   }
 
   #dp {
@@ -104,4 +122,30 @@
 
   #dp-click:hover {
     color: white;
+  }
+
+  .section {
+    padding-bottom: 40vh;
+  }
+
+  button {
+    background-color: rgb(59, 59, 59);
+    color: rgba(255, 232, 202, 0.733);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .wp-img {
+    height: 140px;
+    transition: height 0.7s;
+  }
+
+  .wp-img.hide {
+    height: 0;
+  }
+
+  b {
+    color: whitesmoke;
   }

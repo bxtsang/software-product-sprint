@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <!-- <body> -->
-  <body onload="setTimeout(toggleContent, 3500)">
+  <body>
     <div id="intro-wrapper">
       <div id="intro">
         Hello world, I am
@@ -16,16 +15,63 @@
     </div>
     
     <div id="content" class='hide'>
-      <h1>My name is Bao Xian
-        <span id='dp'></span>
-      </h1>
-      <p>
-        I'm an Information Systems student, aspiring to be a software developer / product manager.
-      </p>
-      <p>This is my personal portfolio. Check out my profiles!</p>
-      <a class='logo' id='linkedin' href='https://www.linkedin.com/in/baoxiantsang/'></a>
-      <a class='logo' id='github' href='https://github.com/bxtsang'></a>
-      
+      <div id='main' class='section'>
+        <h1>My name is Bao Xian
+          <span id='dp'></span>
+        </h1>
+        <p>
+          I'm an Information Systems student, aspiring to be a software developer / product manager.
+        </p>
+        <p>
+          This is my personal portfolio.</br>
+          Check out my other profiles in the buttons just below!
+        </p>
+        <a class='logo' id='linkedin' href='https://www.linkedin.com/in/baoxiantsang/'></a>
+        <a class='logo' id='github' href='https://github.com/bxtsang'></a>
+        <a class='logo' id='instagram' href='https://www.instagram.com/baoxiannn/'></a>
+        <!-- <a class='logo' id='next' href="#about"></a> -->
+      </div>
+      <div name='about' id="about" class='section'>
+        <h1>More about me...</h1>
+        <h3>Water Polo</h3>
+        <p>
+          I am a huge water polo lover. I've played the sport competitively since I was 14 in
+          my various school teams, and was part of the <b>Singapore National Men's Water Polo team</b> from 2016 to 2018.
+          I've also been a coach for many youth and school teams, coaching players between 9 to 17 years old.
+        </p>
+        <p>
+          Water polo has moulded my character, teaching me the very basics of discipline and hardwork,
+          while also training me to work well in teams using good communication and leadership skills.
+          Hence, even as I pursue a profession now away from this sport, the mindset I've inherited from water polo still very much defines me.
+        </p>
+        <button onclick="toggleImages()">See some pictures!</button><br/>
+        <img src="images/wp2.jpg" class='wp-img hide' />
+        <img src="images/wp1.jpg" class='wp-img hide' />
+        <img src="images/wp3.jpg" class='wp-img hide' />
+        <h3><br/>Tech!</h3>
+        <p>
+          I started my tech journey in 2018 after enrolling in the <b>SMU School of Information Systems</b>.
+          From basic programming, I quickly picked up an interest for software development.
+          I particularly enjoy the entire process of building solutions for real problems, from ideation all the way to the implementation and solution management.
+        </p>
+        <p>
+          In my projects, I always believe the end product is only as valuable as how well it addresses the problem it intends to solve.
+          Therefore, as much as the technical specifications, I tend to focus on fitting the solution with the <b>business process</b>,
+          <b>user requirements</b>, and the overall <b>value proposition</b> of any product.
+        </p>
+        <p>
+          Some of my projects are listed in the next section!
+        </p>
+        <h3><br/>Start-up</h3>
+        <p>
+          In 2018, I started a company called HaBaWaBa Asia Pte Ltd. With my team, we secured the Asian rights for HaBaWaBa,
+          the biggest international kids water polo festival. We then organized the festival here in Singapore (the first time in Asia),
+          where there we had about 200 participants from 6 different countries over a span of 4 days.
+        </p>
+        <p>
+          My role was to pitch the festival and secure event partners and grants, manage corporate relations, as well as direct my team's execution of the festival. 
+        </p>
+      </div>
     </div>
   </body>
 </html>
