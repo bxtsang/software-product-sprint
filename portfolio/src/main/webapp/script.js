@@ -17,6 +17,22 @@ window.onload = function() {
 }
 
 /**
+ * Generate a random fact about myself
+ */
+function randomFact() {
+  const facts = [
+    'I can play the guitar!', 
+    'I broke my thumb before...',
+    'My hair turned brown from swimming (chlorine).',
+    'I love singing.',
+    'I am a Hong Kong PR.'
+  ];
+  var fact = facts[Math.floor(Math.random() * facts.length)];
+
+  document.querySelector('#fact').innerHTML = fact;
+}
+
+/**
  * Hides the intro-wrapper and displays the main content
  */
 function toggleContent() {
