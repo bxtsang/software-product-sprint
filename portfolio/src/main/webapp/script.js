@@ -46,13 +46,7 @@ function toggleContent() {
 function toggleImages() {
   var images = document.querySelectorAll('.wp-img');
 
-  if (images[0].classList.contains('hide')) {
-    images.forEach(image => {
-      image.classList.remove('hide');
-    });
-  } else {
-    images.forEach(image => {
-      image.classList.add('hide');
-    });
-  }
+  images.forEach(image => {
+    image.classList.toggle('hide');
+  });
 }
