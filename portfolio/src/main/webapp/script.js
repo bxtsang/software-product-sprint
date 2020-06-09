@@ -27,7 +27,7 @@ function randomFact() {
     'I love singing.',
     'I am a Hong Kong PR.'
   ];
-  var fact = facts[Math.floor(Math.random() * facts.length)];
+  const fact = facts[Math.floor(Math.random() * facts.length)];
 
   document.querySelector('#fact').innerText = fact;
 }
