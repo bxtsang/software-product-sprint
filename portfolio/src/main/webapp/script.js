@@ -29,7 +29,7 @@ function randomFact() {
   ];
   var fact = facts[Math.floor(Math.random() * facts.length)];
 
-  document.querySelector('#fact').innerHTML = fact;
+  document.querySelector('#fact').innerText = fact;
 }
 
 /**
