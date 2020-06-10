@@ -12,17 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+window.onload = function() {
+  setTimeout(toggleContent, 3500);
+}
+
 /**
- * Adds a random greeting to the page.
+ * Generate a random fact about myself
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function randomFact() {
+  const facts = [
+    'I can play the guitar!', 
+    'I broke my thumb before...',
+    'My hair turned brown from swimming (chlorine).',
+    'I love singing.',
+    'I am a Hong Kong PR.'
+  ];
+  const fact = facts[Math.floor(Math.random() * facts.length)];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  document.querySelector('#fact').innerText = fact;
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+/**
+ * Hides the intro-wrapper and displays the main content
+ */
+function toggleContent() {
+  document.querySelector('#intro-wrapper').classList.add('hide');
+  document.querySelector('#content').classList.remove('hide');
+}
+
+/**
+ * Toggles the display of water polo images
+ */
+function toggleImages() {
+  var images = document.querySelectorAll('.wp-img');
+
+  images.forEach(image => {
+    image.classList.toggle('hide');
+  });
 }

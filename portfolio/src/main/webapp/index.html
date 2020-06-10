@@ -1,18 +1,140 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel='stylesheet' href='style.css'>
+    <script src='script.js'></script>
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div id='intro-wrapper'>
+      <div id='intro'>
+        Hello world, I am
+        <span id='name'>Bao Xian</span>
+      </div>
+    </div>
+    
+    <div id='content' class='hide'>
+
+      <div id='main' class='section'>
+        <h1>My name is Bao Xian
+          <span id='dp'></span>
+        </h1>
+        <p>
+          I'm an Information Systems student from Singapore, aspiring to be a software developer / product manager.
+        </p>
+        <p>
+          This is my personal portfolio.
+        </p>
+        <p>
+          <button onclick='randomFact()'>Click here</button> for a random fact about me!<br/>
+          <span id='fact'></span>
+        </p>
+        <p>
+          Check out my other profiles in the buttons just below!
+        </p>
+        
+        <a class='logo' id='linkedin' href='https://www.linkedin.com/in/baoxiantsang/'></a>
+        <a class='logo' id='github' href='https://github.com/bxtsang'></a>
+        <a class='logo' id='instagram' href='https://www.instagram.com/baoxiannn/'></a>
+      </div>
+
+      <div id='about' class='section'>
+        <h1>More about me...</h1>
+        <h3>Water Polo</h3>
+        <p>
+          I am a huge water polo lover. I've played the sport competitively since I was 14 in
+          my various school teams, been part of the <b>Singapore National Men's Water Polo team</b> from 2016 to 2018, and captained the SMU team.
+          I've also been a coach for many youth and school teams, coaching players between 9 to 17 years old.
+        </p>
+        <p>
+          Water polo has moulded my character, teaching me the very basics of discipline and hardwork,
+          while also training me to work well in teams using good communication and leadership skills.
+          Hence, even as I pursue a profession now away from this sport, the mindset I've inherited from water polo still very much defines me.
+        </p>
+        <button onclick='toggleImages()'>See some pictures!</button><br/>
+        <img src='images/wp2.jpg' class='wp-img hide' />
+        <img src='images/wp1.jpg' class='wp-img hide' />
+        <img src='images/wp3.jpg' class='wp-img hide' />
+        <h3><br/>Tech!</h3>
+        <p>
+          I started my tech journey in 2018 after enrolling in the <b>SMU School of Information Systems</b>.
+          From basic programming, I quickly picked up an interest for software development.
+          I particularly enjoy the entire process of building solutions for real problems, from ideation all the way to the implementation and solution management.
+        </p>
+        <p>
+          In my projects, I always believe the end product is only as valuable as how well it addresses the problem it intends to solve.
+          Therefore, as much as the technical specifications, I tend to focus on fitting the solution with the <b>business process</b>,
+          <b>user requirements</b>, and the overall <b>value proposition</b> of any product.
+        </p>
+        <p>
+          Some of my projects are listed in the next section!
+        </p>
+        <h3><br/>Start-Up Experience</h3>
+        <p>
+          In 2018, I started a company called HaBaWaBa Asia Pte Ltd. With my team, we secured the Asian rights for HaBaWaBa,
+          the biggest international kids water polo festival. We then organized the festival here in Singapore (the first time in Asia),
+          where there we had about 200 participants from 6 different countries over a span of 4 days.
+        </p>
+        <p>
+          My role was to pitch the festival and secure event partners and grants, manage corporate relations, as well as direct my team's execution of the festival. 
+        </p>
+      </div>
+
+      <div id='projects' class='section'>
+        <h1>My Projects</h1>
+        <h3>School Projects</h3><ul>
+          <li><h4>Enterprise Solution Management</h4></li>
+          My team of 5 maintained, supported and managed stakeholders for an enterprise grade ticketing solution.
+          The applications were deployed on <b>AWS EC2 and RDS servers</b>, and my team was responsible for upkeeping the <b>security and reliability</b> of the systems, as well as performing any <b>incident management</b>.
+          <br/><br/>
+          The project involved a role-play with professors acting as the CEO, CTO and product managers. Within my team, I was the <b>IT Operations manager</b>,
+          and mostly handled stakeholder management and communication throughout the project lifecycle and even a simulated attack (incident), as well as coordinating my team's efforts.
+
+          <li><h4>Enterprise Solution Development</h4></li>
+          This project required my team to develop a solution from scratch, identifying the problem statement and scenarios before subsequently developing an
+          enterprise solution. The focus was on applying a <b>microservices</b> and <b>service-oriented architecture</b> while using a solution to <b>improve a business process</b>.
+          <br/><br/>
+          My team developed a petrol kiosk checkout and rewards system which improved the process of refuelling petrol by integrating petrol selection, rewards and payment in a user-friendly application.
+          The frontend was developed using <b>Bootstrap CSS</b> and <b>jQuery</b>, while the backend utilized <b>Python Flask</b> microservices with <b>GraphQL</b> built as a layer on top to provide flexible API calls.
+          The services were built with <b>Docker</b> on our <b>AWS EC2 instance</b>, utilizing Kong as an <b>API gateway</b> and communicated with each other via <b>AMQP messaging</b> with a RabbitMQ server.
+
+        </ul><br/>
+        <h3>Other Projects</h3><ul>
+          <li><h4>UGoDo - Personal Project</h4></li>
+          During the Circuit Breaker period in Singapore, I started on a <b>task tracking application</b>, designed with university students in mind, taking into consideration
+          the many concurrent projects they undertake during their school term and the challenges in coordinating tasks amongst their teams. This application allows the <b>project leaders to assign tasks</b> to team members, or <b>users to self-assign tasks</b> under a project, then tracks the <b>productivity</b> of the user,
+          and provides <b>visualisation for the user's workload</b> - useful in helping project leaders to decide who to assign tasks to (hence the name, 'U, go do').
+          <br/><br/>
+          Using this project for my own learning, I incorporated a mix of <b>C#</b> and <b>Python</b> for the backend processing, utilizing the <b>ASP.NET Core</b> framework and <b>Flask</b> to create the web APIs, together with <b>MongoDB</b> for storage.
+          For the frontend, I began with pure HTML, CSS and Javascript, but subsequently converted to using the <b>Vue.js framework</b> for the convenience and modularity of the <b>Single File Components</b>. This project is still work in progress!
+
+          <li><h4>Project Wheelspace - Google DSC Solution Challenge 2020</h4></li>
+          This was an <b>IoT project</b> targetted at improving the <b>accessibility of MRT trains</b> for <b>wheelchair users</b>. When trains are crowded, wheelchair users have difficulty boarding the trains, even at designated wheelchair areas, leading to them missing their trains.
+          Our concept was to install a <b>button</b> at the train station allowing the wheelchair-bound commuter to <b>indicate his intention to board</b>, triggering a signal inside the train carriage, encouraging commuters to make space for the oncoming passenger to smoothly board.
+          <br/><br/>
+          My team developed the prototype on <b>Raspberry Pis</b>, utilizing <b>Firebase</b> to store the status of different train stations and oncoming trains.
+          The processing logic was created on a <b>Node-Red OS</b> with <b>Javascript</b>, with <b>LED lights</b> and <b>Microbit chips</b> simulating train cabin indicators and buttons. The project was submitted as part of Google's DSC Solution Challenge 2020,
+          and we are proposing the project to local MRT authorities to <b>explore implementation opportunities</b>.
+        </ul>
+      </div>
+
+      <div id='misc' class='section'>
+        <h1>
+          Miscellaneous!
+        </h1>
+        <h3>I love travelling</h3>
+          <img src='./images/travel1.jpg' class='travel-img'/>
+          <img src='./images/travel2.jpg' class='travel-img'/>
+          <img src='./images/travel3.jpg' class='travel-img'/>
+          Doing a backpacking trip is definitely on my bucket list!
+        <h3>Sea and Sunsets</h3>
+          <img src='./images/sea2.jpg' class='sea-img'/>
+          <img src='./images/sea3.jpg' class='sea-img'/>
+          <img src='./images/sea1.jpg' class='sea-img'/>
+          Fun fact: I learnt to steer a ship before driving a car!
+      </div>
+
     </div>
   </body>
 </html>
