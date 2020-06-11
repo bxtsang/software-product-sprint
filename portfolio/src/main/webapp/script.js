@@ -14,6 +14,7 @@
 
 window.onload = function() {
   setTimeout(toggleContent, 3500);
+  getMessage();
 }
 
 /**
@@ -49,4 +50,10 @@ function toggleImages() {
   images.forEach(image => {
     image.classList.toggle('hide');
   });
+}
+
+async function getMessage() {
+  const response = await fetch('/data');
+  const message = await response.text();
+  document.querySelector('#greeting').innerHTML = message;
 }
