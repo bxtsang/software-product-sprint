@@ -14,7 +14,7 @@
 
 window.onload = function() {
   setTimeout(toggleContent, 3500);
-  getMessage();
+  getMessages();
 }
 
 /**
