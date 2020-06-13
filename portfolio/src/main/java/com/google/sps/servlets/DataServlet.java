@@ -27,16 +27,18 @@ import java.util.ArrayList;
 public class DataServlet extends HttpServlet {
 
   private final Gson GSON = new Gson();
+  private ArrayList<String> comments = new ArrayList<>();
+
+  @Override
+  public void init() {
+    comments.add("Insanity is trying the same thing over and over again and expecting a different result.");
+    comments.add("No amount of money ever bought a second of time.");
+    comments.add("Be like water my friend.");
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> quotes = new ArrayList<>();
-
-    quotes.add("Insanity is trying the same thing over and over again and expecting a different result.");
-    quotes.add("No amount of money ever bought a second of time.");
-    quotes.add("Be like water my friend.");
-
-    String json = GSON.toJson(quotes);
+    String json = GSON.toJson(comments);
 
     response.setContentType("text/json;");
     response.getWriter().println(json);
