@@ -26,6 +26,8 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private static final Gson GSON = new Gson();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     ArrayList<String> quotes = new ArrayList<>();
@@ -34,8 +36,7 @@ public class DataServlet extends HttpServlet {
     quotes.add("No amount of money ever bought a second of time.");
     quotes.add("Be like water my friend.");
 
-    Gson gson = new Gson();
-    String json = gson.toJson(quotes);
+    String json = GSON.toJson(quotes);
 
     response.setContentType("text/json;");
     response.getWriter().println(json);
