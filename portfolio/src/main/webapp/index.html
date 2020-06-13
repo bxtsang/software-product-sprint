@@ -14,7 +14,7 @@
       </div>
     </div>
     
-    <div id='content' class='hide'>
+    <div id='content'>
 
       <div id='main' class='section'>
         <h1>
@@ -137,12 +137,14 @@
       </div>
 
       <div id='comments' class='section'>
-        <h1>
-          Leave a message
-        </h1>
-        <div id='messages'>
-
-        </div>
+        <h1>Comments</h1>
+        <div id='messages'></div>
+        <form action='/data'>
+          Leave a message:<br/>
+          <textarea name='message'>Write something here!</textarea><br/>
+          <input type='submit' />
+        </form>
+        
       </div>
 
     </div>
