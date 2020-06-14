@@ -51,7 +51,11 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String message = request.getParameter("message");
 
-    comments.add(message);
+    Entity messageEntity = new Entity("Message");
+    messageEntity.setProperty("message", message);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(messageEntity);
 
     String referer = request.getHeader("Referer");
     response.sendRedirect(referer);
