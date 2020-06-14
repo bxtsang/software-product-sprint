@@ -43,4 +43,14 @@ public class DataServlet extends HttpServlet {
     response.setContentType("text/json;");
     response.getWriter().println(json);
   }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String message = request.getParameter("message");
+
+    comments.add(message);
+
+    String referer = request.getHeader("Referer");
+    response.sendRedirect(referer);
+  }
 }
