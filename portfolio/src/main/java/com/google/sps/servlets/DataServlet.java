@@ -32,6 +32,7 @@ import com.google.appengine.api.datastore.Query;
 public class DataServlet extends HttpServlet {
 
   private final Gson GSON = new Gson();
+  private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private ArrayList<String> comments = new ArrayList<>();
 
   @Override
@@ -56,7 +57,6 @@ public class DataServlet extends HttpServlet {
     Entity messageEntity = new Entity("Message");
     messageEntity.setProperty("message", message);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(messageEntity);
 
     String referer = request.getHeader("Referer");
