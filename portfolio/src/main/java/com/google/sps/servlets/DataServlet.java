@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -33,17 +34,18 @@ public class DataServlet extends HttpServlet {
 
   private final Gson GSON = new Gson();
   private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  private ArrayList<String> comments = new ArrayList<>();
-
-  @Override
-  public void init() {
-    comments.add("Insanity is trying the same thing over and over again and expecting a different result.");
-    comments.add("No amount of money ever bought a second of time.");
-    comments.add("Be like water my friend.");
-  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    List<String> comments = new ArrayList<>();
+
+    Query query = new Query("Message");
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()){
+      comments.add((String) entity.getProperty("message"));
+    }
+
     String json = GSON.toJson(comments);
 
     response.setContentType("text/json;");
