@@ -14,7 +14,7 @@
 
 window.onload = function() {
   setTimeout(toggleContent, 3500);
-  getMessage();
+  getMessages();
 }
 
 /**
@@ -52,8 +52,15 @@ function toggleImages() {
   });
 }
 
-async function getMessage() {
+async function getMessages() {
   const response = await fetch('/data');
-  const message = await response.text();
-  document.querySelector('#greeting').innerHTML = message;
+  const quotes = await response.json();
+
+  var messages = '';
+
+  quotes.forEach(quote => {
+    messages += "<p>" + quote + "</p>"
+  });
+
+  document.querySelector('#messages').innerHTML = messages;
 }
