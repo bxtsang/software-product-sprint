@@ -137,12 +137,14 @@
       </div>
 
       <div id='comments' class='section'>
-        <h1>
-          Leave a message
-        </h1>
-        <div id='messages'>
-
-        </div>
+        <h1>Comments</h1>
+        <div id='messages'></div>
+        <form action='/data' method='post'>
+          Leave a message:<br/>
+          <textarea name='message'>Write something here!</textarea><br/>
+          <input type='submit' />
+        </form>
+        
       </div>
 
     </div>

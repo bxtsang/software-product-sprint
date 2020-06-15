@@ -157,3 +157,9 @@
   .sea-img {
     height: 198px;
   }
+
+  textarea {
+    width: 70%;
+    height: 150px;
+    background-color: rgb(221, 221, 221);
+  }
