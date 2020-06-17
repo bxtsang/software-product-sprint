@@ -28,6 +28,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.sps.data.Message;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -58,11 +59,14 @@ public class DataServlet extends HttpServlet {
     String message = request.getParameter("message");
     long timestamp = System.currentTimeMillis();
 
-    Entity messageEntity = new Entity("Message");
-    messageEntity.setProperty("message", message);
-    messageEntity.setProperty("timestamp", timestamp);
+    Message messageObj = new Message(timestamp, message);
 
-    datastore.put(messageEntity);
+    if (! messageObj.isValid()) {
+      response.sendError(400);
+      return;
+    }
+
+    datastore.put(messageObj.toEntity());
 
     String referer = request.getHeader("Referer");
     response.sendRedirect(referer);
