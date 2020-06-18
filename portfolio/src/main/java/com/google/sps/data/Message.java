@@ -12,7 +12,7 @@ public class Message {
   }
 
   public boolean isValid() {
-    if (message.trim() == "") {
+    if (message == null || message.trim() == "") {
       return false;
     }
     return true;
