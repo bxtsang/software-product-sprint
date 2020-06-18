@@ -61,7 +61,7 @@ public class DataServlet extends HttpServlet {
 
     Message messageObj = new Message(timestamp, message);
 
-    if (! messageObj.isValid()) {
+    if (!messageObj.isValid()) {
       response.sendError(400);
       return;
     }

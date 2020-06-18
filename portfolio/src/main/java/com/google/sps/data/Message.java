@@ -3,7 +3,6 @@ package com.google.sps.data;
 import com.google.appengine.api.datastore.Entity;
 
 public class Message {
-  
   private final long timestamp;
   private final String message;
 
@@ -16,7 +15,6 @@ public class Message {
     if (message.trim() == "") {
       return false;
     }
-
     return true;
   }
 
