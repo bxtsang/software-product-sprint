@@ -21,23 +21,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.sps.data.Message;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
   private final Gson GSON = new Gson();
-  private ArrayList<String> comments = new ArrayList<>();
-
-  @Override
-  public void init() {
-    comments.add("Insanity is trying the same thing over and over again and expecting a different result.");
-    comments.add("No amount of money ever bought a second of time.");
-    comments.add("Be like water my friend.");
-  }
+  private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    List<String> comments = new ArrayList<>();
+
+    Query query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()){
+      comments.add((String) entity.getProperty("message"));
+    }
+
     String json = GSON.toJson(comments);
 
     response.setContentType("text/json;");
@@ -47,8 +57,16 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String message = request.getParameter("message");
+    long timestamp = System.currentTimeMillis();
 
-    comments.add(message);
+    Message messageObj = new Message(timestamp, message);
+
+    if (!messageObj.isValid()) {
+      response.sendError(400);
+      return;
+    }
+
+    datastore.put(messageObj.toEntity());
 
     String referer = request.getHeader("Referer");
     response.sendRedirect(referer);

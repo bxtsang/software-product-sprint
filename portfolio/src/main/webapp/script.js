@@ -56,11 +56,7 @@ async function getMessages() {
   const response = await fetch('/data');
   const quotes = await response.json();
 
-  var messages = '';
-
-  quotes.forEach(quote => {
-    messages += "<p>" + quote + "</p>"
-  });
+  const messages = quotes.reduce((prev, quote) => prev + "<p>" + quote + "</p>", "");
 
   document.querySelector('#messages').innerHTML = messages;
 }
