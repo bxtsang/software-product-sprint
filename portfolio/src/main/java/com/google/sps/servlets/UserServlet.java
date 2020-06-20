@@ -14,16 +14,17 @@ public class UserServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
+    response.setContentType("text/json;");
 
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
       String logoutUrl = userService.createLogoutURL("/");
 
-      response.getWriter().println("<p><a href=" + logoutUrl + ">logout</a></p>");
+      response.getWriter().print("[0, " + logoutUrl + "]");
     } else {
       String loginUrl = userService.createLoginURL("/login");
 
-      response.getWriter().println("<p><a href=" + loginUrl + ">login</a></p>");
+      response.getWriter().print("[0, " + loginUrl + "]");
     }
   }
 }
