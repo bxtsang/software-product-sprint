@@ -128,7 +128,7 @@
     padding-bottom: 13vh;
   }
 
-  button {
+  button, input {
     background-color: rgb(59, 59, 59);
     color: rgba(255, 232, 202, 0.733);
     font-family: 'Raleway', sans-serif;
