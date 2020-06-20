@@ -15,6 +15,7 @@
 window.onload = function() {
   setTimeout(toggleContent, 3500);
   getMessages();
+  checkLogin();
 }
 
 /**
@@ -63,4 +64,19 @@ async function getMessages() {
   });
 
   document.querySelector('#messages').innerHTML = messages;
+}
+
+async function checkLogin() {
+  const response = await fetch('/login');
+  const isLogin = await response.json()[0];
+  const url = await response[1];
+  
+  var loginButton = document.querySelector('#login');
+  loginButton.addEventListener('click', () => {window.location.href = url;});
+
+  if (isLogin) {
+    loginButton.innerText = 'Logout';
+  } else {
+    loginButton.innerText = 'Login';
+  }
 }
