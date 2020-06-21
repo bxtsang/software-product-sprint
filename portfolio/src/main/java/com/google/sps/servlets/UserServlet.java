@@ -7,24 +7,33 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.Gson;
 
 @WebServlet("/login")
 public class UserServlet extends HttpServlet {
+  private final Gson GSON = new Gson();
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
-    response.setContentType("text/json;");
+    List<String> data = new ArrayList<>();
 
     if (userService.isUserLoggedIn()) {
-      String userEmail = userService.getCurrentUser().getEmail();
       String logoutUrl = userService.createLogoutURL("/");
-
-      response.getWriter().print("[0, " + logoutUrl + "]");
+      
+      data.add("logout");
+      data.add(logoutUrl);
     } else {
-      String loginUrl = userService.createLoginURL("/login");
+      String loginUrl = userService.createLoginURL("/");
 
-      response.getWriter().print("[0, " + loginUrl + "]");
+      data.add("login");
+      data.add(loginUrl);
     }
+
+    String json = GSON.toJson(data);
+    response.setContentType("text/json");
+    response.getWriter().println(json);
   }
 }

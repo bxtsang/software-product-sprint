@@ -68,15 +68,9 @@ async function getMessages() {
 
 async function checkLogin() {
   const response = await fetch('/login');
-  const isLogin = await response.json()[0];
-  const url = await response[1];
-  
-  var loginButton = document.querySelector('#login');
-  loginButton.addEventListener('click', () => {window.location.href = url;});
+  const data = await response.json();
 
-  if (isLogin) {
-    loginButton.innerText = 'Logout';
-  } else {
-    loginButton.innerText = 'Login';
-  }
+  var loginLink = document.querySelector('#login');
+  loginLink.innerText = data[0];
+  loginLink.setAttribute('href', data[1]);
 }
