@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 @WebServlet("/login")
 public class UserServlet extends HttpServlet {
-  private final Gson GSON = new Gson();
+  private static Gson GSON = new Gson();
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
