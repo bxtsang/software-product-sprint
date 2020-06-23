@@ -10,29 +10,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.ArrayList;
 import com.google.gson.Gson;
+import com.google.sps.data.LoginResponse;
 
 @WebServlet("/login")
 public class UserServlet extends HttpServlet {
   private static Gson GSON = new Gson();
   private static UserService userService = UserServiceFactory.getUserService();
+  private LoginResponse responseObj = new LoginResponse();
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    List<String> data = new ArrayList<>();
-
     if (userService.isUserLoggedIn()) {
-      String logoutUrl = userService.createLogoutURL("/");
-      
-      data.add("logout");
-      data.add(logoutUrl);
+      responseObj.setLoggedIn(true);
+      responseObj.setUrl(userService.createLogoutURL("/"));
     } else {
-      String loginUrl = userService.createLoginURL("/");
-
-      data.add("login");
-      data.add(loginUrl);
+      responseObj.setLoggedIn(false);
+      responseObj.setUrl(userService.createLoginURL("/"));
     }
 
-    String json = GSON.toJson(data);
+    String json = GSON.toJson(responseObj);
     response.setContentType("text/json");
     response.getWriter().println(json);
   }
