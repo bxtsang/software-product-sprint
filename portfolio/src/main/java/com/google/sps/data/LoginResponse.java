@@ -4,8 +4,11 @@ public class LoginResponse {
   private boolean isLoggedIn;
   private String url;
 
-  public LoginResponse(boolean isLoggedIn, String url) {
+  public void setLoggedIn(boolean isLoggedIn) {
     this.isLoggedIn = isLoggedIn;
+  }
+
+  public void setUrl(String url) {
     this.url = url;
   }
 
