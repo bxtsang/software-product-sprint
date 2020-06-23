@@ -14,10 +14,10 @@ import com.google.gson.Gson;
 @WebServlet("/login")
 public class UserServlet extends HttpServlet {
   private static Gson GSON = new Gson();
+  private static UserService userService = UserServiceFactory.getUserService();
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
     List<String> data = new ArrayList<>();
 
     if (userService.isUserLoggedIn()) {
