@@ -32,7 +32,7 @@ import com.google.appengine.api.datastore.Query;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private final Gson GSON = new Gson();
+  private final Gson gson = new Gson();
   private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
@@ -46,7 +46,7 @@ public class DataServlet extends HttpServlet {
       comments.add((String) entity.getProperty("message"));
     }
 
-    String json = GSON.toJson(comments);
+    String json = gson.toJson(comments);
 
     response.setContentType("text/json;");
     response.getWriter().println(json);

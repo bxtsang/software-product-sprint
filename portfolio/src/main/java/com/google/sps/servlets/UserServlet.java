@@ -14,7 +14,7 @@ import com.google.sps.data.LoginResponse;
 
 @WebServlet("/login")
 public class UserServlet extends HttpServlet {
-  private static Gson GSON = new Gson();
+  private static Gson gson = new Gson();
   private static UserService userService = UserServiceFactory.getUserService();
   private LoginResponse responseObj = new LoginResponse();
   
@@ -28,7 +28,7 @@ public class UserServlet extends HttpServlet {
       responseObj.setUrl(userService.createLoginURL("/"));
     }
 
-    String json = GSON.toJson(responseObj);
+    String json = gson.toJson(responseObj);
     response.setContentType("text/json");
     response.getWriter().println(json);
   }
