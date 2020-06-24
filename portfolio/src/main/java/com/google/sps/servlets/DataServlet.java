@@ -32,8 +32,8 @@ import com.google.appengine.api.datastore.Query;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private final Gson gson = new Gson();
-  private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private static Gson gson = new Gson();
+  private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
