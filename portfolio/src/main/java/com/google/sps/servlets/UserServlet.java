@@ -32,4 +32,8 @@ public class UserServlet extends HttpServlet {
     response.setContentType("text/json");
     response.getWriter().println(json);
   }
+
+  public static boolean isLoggedIn() {
+    return userService.isUserLoggedIn();
+  }
 }

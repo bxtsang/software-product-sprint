@@ -54,6 +54,9 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    if (!UserServlet.isLoggedIn()) {
+      response.sendRedirect("/error?login=0");
+    }
     String message = request.getParameter("message");
 
     Entity messageEntity = new Entity("Message");
