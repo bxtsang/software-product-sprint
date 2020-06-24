@@ -25,6 +25,18 @@
     font-family: 'Raleway', sans-serif;
   }
 
+  a {
+    color: rgba(255, 232, 202, 0.733);
+  }
+
+  form {
+    padding-top: 10px;
+  }
+
+  form.hide {
+    display: none;
+  }
+
   #intro-wrapper {
     display: flex;
     justify-content: center;
