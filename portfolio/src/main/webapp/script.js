@@ -71,6 +71,13 @@ async function checkLogin() {
   const data = await response.json();
 
   var loginLink = document.querySelector('#login');
-  loginLink.innerText = data[0];
-  loginLink.setAttribute('href', data[1]);
+
+  if (data.isLoggedIn) {
+    loginLink.innerText = 'Logout';
+  } else {
+    loginLink.innerText = 'Login to comment';
+    document.querySelector('#comments-form').classList.add('hide');
+  }
+
+  loginLink.setAttribute('href', data.url);
 }
