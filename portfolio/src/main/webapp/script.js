@@ -76,7 +76,7 @@ async function checkLogin() {
     loginLink.innerText = 'Logout';
   } else {
     loginLink.innerText = 'Login to comment';
-    document.querySelector('#comments-form').classList.add('hide');
+    document.querySelector('#comments-form').classList.remove('hide');
   }
 
   loginLink.setAttribute('href', data.url);
