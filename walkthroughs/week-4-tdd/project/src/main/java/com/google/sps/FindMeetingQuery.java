@@ -14,10 +14,21 @@
 
 package com.google.sps;
 
+import java.sql.Time;
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    List<TimeRange> possibleTimes = new ArrayList<TimeRange>();
+
+    if (request.getAttendees().isEmpty()) {
+      return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+
+    return possibleTimes;
   }
 }
