@@ -29,6 +29,9 @@ public final class FindMeetingQuery {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
+    possibleTimes.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.getTimeInMinutes(8, 30), false));
+    possibleTimes.add(TimeRange.fromStartEnd(TimeRange.getTimeInMinutes(9, 0), TimeRange.END_OF_DAY, true));
+
     return possibleTimes;
   }
 }
