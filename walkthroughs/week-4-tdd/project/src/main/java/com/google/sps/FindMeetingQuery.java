@@ -39,7 +39,9 @@ public final class FindMeetingQuery {
       if (earliestPossible < event.getWhen().start()) {
         possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false));
       }
-      earliestPossible = event.getWhen().end();
+      if (event.getWhen().end() > earliestPossible) {
+        earliestPossible = event.getWhen().end();
+      }
     }
 
     possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true));
