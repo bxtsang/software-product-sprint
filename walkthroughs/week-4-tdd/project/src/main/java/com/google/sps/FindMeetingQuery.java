@@ -44,7 +44,9 @@ public final class FindMeetingQuery {
       }
     }
 
-    possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true));
+    if (earliestPossible < TimeRange.END_OF_DAY) {
+      possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true));
+    }
 
     return possibleTimes;
   }
