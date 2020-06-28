@@ -43,7 +43,7 @@ public final class FindMeetingQuery {
       }
 
       if (earliestPossible < event.getWhen().start()) {
-        possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false));
+        addIfEnoughRoom(possibleTimes, TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false), request.getDuration());
       }
       if (event.getWhen().end() > earliestPossible) {
         earliestPossible = event.getWhen().end();
@@ -51,7 +51,7 @@ public final class FindMeetingQuery {
     }
 
     if (earliestPossible < TimeRange.END_OF_DAY) {
-      possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true));
+      addIfEnoughRoom(possibleTimes, TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true), request.getDuration());
     }
 
     return possibleTimes;
@@ -64,5 +64,12 @@ public final class FindMeetingQuery {
       }
     }
     return false;
+  }
+
+  private List<TimeRange> addIfEnoughRoom (List<TimeRange> possibleTimes, TimeRange range, long duration) {
+    if (range.duration() >= duration) {
+      possibleTimes.add(range);
+    }
+    return possibleTimes;
   }
 }
