@@ -33,8 +33,14 @@ public final class FindMeetingQuery {
       return possibleTimes;
     }
 
-    possibleTimes.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.getTimeInMinutes(8, 30), false));
-    possibleTimes.add(TimeRange.fromStartEnd(TimeRange.getTimeInMinutes(9, 0), TimeRange.END_OF_DAY, true));
+    int earliestPossible = TimeRange.START_OF_DAY;
+
+    for (Event event : events) {
+      possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false));
+      earliestPossible = event.getWhen().end();
+    }
+
+    possibleTimes.add(TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true));
 
     return possibleTimes;
   }
