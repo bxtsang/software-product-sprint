@@ -14,12 +14,10 @@
 
 package com.google.sps;
 
-import java.sql.Time;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
-import java.util.Iterator;
 
 
 public final class FindMeetingQuery {
