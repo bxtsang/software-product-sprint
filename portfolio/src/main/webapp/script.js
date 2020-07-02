@@ -67,10 +67,11 @@ async function getMessages() {
 }
 
 async function checkLogin() {
+  var loginLink = document.querySelector('#login');
+  loginLink.innerText = 'Loading...';
+
   const response = await fetch('/login');
   const data = await response.json();
-
-  var loginLink = document.querySelector('#login');
 
   if (data.isLoggedIn) {
     loginLink.innerText = 'Logout';
