@@ -14,6 +14,7 @@
 
 package com.google.sps;
 
+import java.sql.Time;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,15 +42,22 @@ public final class FindMeetingQuery {
       }
 
       if (earliestPossible < event.getWhen().start()) {
-        addIfEnoughRoom(possibleTimes, TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false), request.getDuration());
+        TimeRange possibleRange = TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false);
+        if (request.getDuration() <= possibleRange.duration()){
+          possibleTimes.add(possibleRange);
+        }
       }
+
       if (event.getWhen().end() > earliestPossible) {
         earliestPossible = event.getWhen().end();
       }
     }
 
     if (earliestPossible < TimeRange.END_OF_DAY) {
-      addIfEnoughRoom(possibleTimes, TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true), request.getDuration());
+      TimeRange possibleRange = TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true);
+      if (request.getDuration() <= possibleRange.duration()){
+        possibleTimes.add(possibleRange);
+      }
     }
 
     return possibleTimes;
@@ -62,12 +70,5 @@ public final class FindMeetingQuery {
       }
     }
     return false;
-  }
-
-  private List<TimeRange> addIfEnoughRoom (List<TimeRange> possibleTimes, TimeRange range, long duration) {
-    if (range.duration() >= duration) {
-      possibleTimes.add(range);
-    }
-    return possibleTimes;
   }
 }
