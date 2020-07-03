@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.lang.Math;
+import java.util.Collections;
 
 
 public final class FindMeetingQuery {
@@ -37,7 +38,7 @@ public final class FindMeetingQuery {
     int earliestPossible = TimeRange.START_OF_DAY;
 
     for (Event event : events) {
-      if (!isEventConsidered(event, request)) {
+      if (Collections.disjoint(event.getAttendees(), request.getAttendees())) {
         //ignore event that should not be considered
         continue;
       }
@@ -63,14 +64,5 @@ public final class FindMeetingQuery {
     }
 
     return possibleTimes;
-  }
-
-  private boolean isEventConsidered (Event event, MeetingRequest request) {
-    for (String attendee: event.getAttendees()) {
-      if (request.getAttendees().contains(attendee)) {
-        return true;
-      }
-    }
-    return false;
   }
 }
