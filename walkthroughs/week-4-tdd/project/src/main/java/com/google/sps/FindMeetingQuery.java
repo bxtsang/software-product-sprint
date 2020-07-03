@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.lang.Math;
 
 
 public final class FindMeetingQuery {
@@ -41,16 +42,17 @@ public final class FindMeetingQuery {
         continue;
       }
 
-      if (earliestPossible < event.getWhen().start()) {
-        TimeRange possibleRange = TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false);
-        if (request.getDuration() <= possibleRange.duration()){
-          possibleTimes.add(possibleRange);
-        }
+      if (earliestPossible >= event.getWhen().start()) {
+        earliestPossible = Math.max(earliestPossible, event.getWhen().end());
+        continue;
       }
 
-      if (event.getWhen().end() > earliestPossible) {
-        earliestPossible = event.getWhen().end();
+      TimeRange possibleRange = TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false);
+      if (request.getDuration() <= possibleRange.duration()){
+        possibleTimes.add(possibleRange);
       }
+
+      earliestPossible = event.getWhen().end();
     }
 
     if (earliestPossible < TimeRange.END_OF_DAY) {
