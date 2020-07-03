@@ -24,12 +24,12 @@ public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     List<TimeRange> possibleTimes = new ArrayList<TimeRange>();
 
-    if (request.getAttendees().isEmpty()) {
-      return Arrays.asList(TimeRange.WHOLE_DAY);
-    }
-
     if (request.getDuration() > 24 * 60) {
       return possibleTimes;
+    }
+
+    if (request.getAttendees().isEmpty()) {
+      return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
     int earliestPossible = TimeRange.START_OF_DAY;
