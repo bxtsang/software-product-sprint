@@ -34,8 +34,8 @@ import com.google.sps.data.Message;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private final Gson GSON = new Gson();
-  private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private static Gson gson = new Gson();
+  private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -48,7 +48,7 @@ public class DataServlet extends HttpServlet {
       comments.add((String) entity.getProperty("message"));
     }
 
-    String json = GSON.toJson(comments);
+    String json = gson.toJson(comments);
 
     response.setContentType("text/json;");
     response.getWriter().println(json);
@@ -56,6 +56,9 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    if (!UserServlet.isLoggedIn()) {
+      response.sendRedirect("/error?login=0");
+    }
     String message = request.getParameter("message");
     long timestamp = System.currentTimeMillis();
 

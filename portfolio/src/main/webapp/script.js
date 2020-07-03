@@ -15,6 +15,7 @@
 window.onload = function() {
   setTimeout(toggleContent, 3500);
   getMessages();
+  checkLogin();
 }
 
 /**
@@ -59,4 +60,21 @@ async function getMessages() {
   const messages = quotes.reduce((prev, quote) => prev + "<p>" + quote + "</p>", "");
 
   document.querySelector('#messages').innerHTML = messages;
+}
+
+async function checkLogin() {
+  var loginLink = document.querySelector('#login');
+  loginLink.innerText = 'Loading...';
+
+  const response = await fetch('/login');
+  const data = await response.json();
+
+  if (data.isLoggedIn) {
+    loginLink.innerText = 'Logout';
+  } else {
+    loginLink.innerText = 'Login to comment';
+    document.querySelector('#comments-form').classList.remove('hide');
+  }
+
+  loginLink.setAttribute('href', data.url);
 }
