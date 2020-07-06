@@ -14,10 +14,55 @@
 
 package com.google.sps;
 
+import java.sql.Time;
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.lang.Math;
+import java.util.Collections;
+
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    List<TimeRange> possibleTimes = new ArrayList<TimeRange>();
+
+    if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
+      return possibleTimes;
+    }
+
+    if (request.getAttendees().isEmpty()) {
+      return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+
+    int earliestPossible = TimeRange.START_OF_DAY;
+
+    for (Event event : events) {
+      if (Collections.disjoint(event.getAttendees(), request.getAttendees())) {
+        //ignore event that should not be considered
+        continue;
+      }
+
+      if (earliestPossible >= event.getWhen().start()) {
+        earliestPossible = Math.max(earliestPossible, event.getWhen().end());
+        continue;
+      }
+
+      TimeRange possibleRange = TimeRange.fromStartEnd(earliestPossible, event.getWhen().start(), false);
+      if (request.getDuration() <= possibleRange.duration()){
+        possibleTimes.add(possibleRange);
+      }
+
+      earliestPossible = event.getWhen().end();
+    }
+
+    if (earliestPossible < TimeRange.END_OF_DAY) {
+      TimeRange possibleRange = TimeRange.fromStartEnd(earliestPossible, TimeRange.END_OF_DAY, true);
+      if (request.getDuration() <= possibleRange.duration()){
+        possibleTimes.add(possibleRange);
+      }
+    }
+
+    return possibleTimes;
   }
 }
